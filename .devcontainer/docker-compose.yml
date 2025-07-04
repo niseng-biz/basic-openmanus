@@ -9,4 +9,15 @@ services:
     volumes:
       - ../..:/workspaces:cached
 
-    command: sleep infinity
+    # 初回起動時にOpenManusフォルダを確認し、空ならcloneする
+    command: >
+      bash -c "
+        if [ ! -d '/workspaces/basic-openmanus/OpenManus' ] || [ -z \"$(ls -A /workspaces/basic-openmanus/OpenManus 2>/dev/null)\" ]; then
+          echo 'OpenManus folder is empty or does not exist. Cloning from GitHub...'
+          cd /workspaces/basic-openmanus
+          git clone https://github.com/FoundationAgents/OpenManus.git
+        else
+          echo 'OpenManus folder already exists and is not empty. Skipping clone.'
+        fi
+        sleep infinity
+      "
