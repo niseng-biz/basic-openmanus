@@ -1,4 +1,9 @@
 # How to use
+## このリポジトリについて
+
+このリポジトリはopenmanusをdevcontainer上で動かすようにしたものです。
+devcontainerとして開いてください。
+<br><br>
 
 ## geminiを使う場合の設定（初期設定）
 
