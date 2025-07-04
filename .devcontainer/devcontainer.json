@@ -1,0 +1,52 @@
+{
+  "name": "BASIC-OPENMANUS",
+	"dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/workspaces/basic-openmanus/",
+	"service": "app",
+  // "runArgs": ["--gpus=all"],
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22" // 必要に応じてNode.jsのバージョンを指定
+    }
+  },
+
+  "postCreateCommand": "cd OpenManus &&  uv venv --python 3.12 && . .venv/bin/activate && uv pip install -r requirements.txt  && playwright install",
+  //git config --global user.name 'username' && git config --global user.email 'yourmail'
+  // cp config/config.example.toml config/config.toml
+
+  "customizations": {
+    "vscode": {
+       "settings": {
+                "editor.rulers": [
+                    88
+                ],
+                "[python]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    }
+                },
+                "python.linting.pylintEnabled": false,
+                "python.linting.flake8Enabled": true,
+                "python.formatting.provider": "black",
+                "isort.args": [
+                    "--profile",
+                    "black"
+                ],
+                "python.linting.flake8Args": [
+                    "--max-line-length",
+                    "88",
+                    "--extend-ignore",
+                    "E203"
+                ]
+            },
+        "extensions": [
+                "be5invis.toml",
+                "eamodio.gitlens",
+                "streetsidesoftware.code-spell-checker"
+            ]
+    }
+  }
+
+  //"forwardPorts": [3000]
+}
